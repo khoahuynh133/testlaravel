@@ -9,7 +9,7 @@ class Movie extends Model
 {
     protected $table = 'movies';
     protected $fillable = [
-        'title', 'description', 'duration',
+        'title', 'description', 'duration', 
         'release_date','poster_url', 'bg_url',
         'status', 'category', 'actor','diretor',
         'country','trailer_url'

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('showtime_id');
             $table->foreign('showtime_id')->references('showtime_id')->on('showtimes');
             $table->enum('status', ['available', 'booked']);
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable(); 
             $table->foreign('user_id')->references('id')->on('acl_users');
             $table->timestamps();
         });

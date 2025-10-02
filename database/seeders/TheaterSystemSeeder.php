@@ -15,7 +15,7 @@ class TheaterSystemSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('theatersystems')->insert([
+        DB::table('theater_systems')->insert([
             [
                 'theater_systems_id' => 1,
                 'name' => 'CGV',

@@ -28,9 +28,7 @@ class TheaterSeeder extends Seeder
             // BHD Star
             ['name' => 'BHD Star Bitexco', 'theater_systems_id' => 4],
             ['name' => 'BHD Star Vincom Thảo Điền', 'theater_systems_id' => 4],
-            // Mega GS
-            ['name' => 'Mega GS Cao Thắng', 'theater_systems_id' => 5],
-            ['name' => 'Mega GS Bình Dương', 'theater_systems_id' => 5],
+
         ];
         foreach ($theaters as &$theater) {
             $theater['created_at'] = now();

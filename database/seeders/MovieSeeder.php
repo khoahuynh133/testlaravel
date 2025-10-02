@@ -15,7 +15,7 @@ class MovieSeeder extends Seeder
      */
     public function run()
     {
-       \DB::table('movies')->insert([
+        \DB::table('movies')->insert([
             [
                 'movie_id' => 1,
                 'title' => 'Tử Chiến Trên Không',
@@ -23,8 +23,8 @@ class MovieSeeder extends Seeder
 
                 'duration' => '118',
                 'release_date' => '2025-09-18',
-                'poster_url' => '/public/assets/img/tu-chien-tren-khong/tu-chien-tren-khong-pt.jpg',
-                'bg_url' => '/public/assets/img/tu-chien-tren-khong/tu-chien-tren-khong-bg.jpg',
+                'poster_url' => '/assets/img/tu-chien-tren-khong/tu-chien-tren-khong-pt.jpg',
+                'bg_url' => '/assets/img/tu-chien-tren-khong/tu-chien-tren-khong-bg.jpg',
                 'status' => 'now_showing',
                 'category' => 'Hành động, Tội phạm',
                 'actor' => 'Thái Hòa, Kaity Nguyễn, Thanh Sơn, Võ Điền Gia Huy, Trần Ngọc Vàng, Lợi Trần',
@@ -41,8 +41,8 @@ class MovieSeeder extends Seeder
 
                 'duration' => '124',
                 'release_date' => '2025-08-21',
-                'poster_url' => '/public/assets/img/mua-do/mua-do-pt.jpg',
-                'bg_url' => '/public/assets/img/mua-do/mua-do-bg.jpg',
+                'poster_url' => '/assets/img/mua-do/mua-do-pt.jpg',
+                'bg_url' => '/assets/img/mua-do/mua-do-bg.jpg',
                 'status' => 'now_showing',
                 'category' => 'Chiến Tranh, Hành Động',
                 'actor' => 'Đỗ Nhật Hoàng, Phương Nam, Lâm Thanh Nhã, Hứa Vỹ Văn',
@@ -58,8 +58,8 @@ class MovieSeeder extends Seeder
                 'description' => 'Lấy cảm hứng từ tiểu thuyết tâm linh của nhà văn Thục Linh kể về Nhài - một cô dâu trẻ được gả vào gia tộc họ Vũ và vô tình bị cuốn vào một “khế ước” kinh hoàng với quỷ dữ. Phim mới Khế Ước Bán Dâu suất chiếu sớm 11.09 (không áp dụng Movie voucher), dự kiến khởi chiếu 12.09.2025 tại các rạp chiếu phim toàn quốc.',
                 'duration' => '114',
                 'release_date' => '2025-09-11',
-                'poster_url' => '/public/assets/img/khe-uoc-co-dau/khe-uoc-co-dau-poster.jpg',
-                'bg_url' => '/public/assets/img/khe-uoc-co-dau/khe-uoc-co-dau-bg.jpg',
+                'poster_url' => '/assets/img/khe-uoc-co-dau/khe-uoc-co-dau-poster.jpg',
+                'bg_url' => '/assets/img/khe-uoc-co-dau/khe-uoc-co-dau-bg.jpg',
                 'status' => 'now_showing',
                 'category' => 'Tâm Lý, Ly Kì',
                 'actor' => 'Lâm Thanh Mỹ, Lãnh Thanh, NSND Trung Anh, Hữu Vĩ',
@@ -69,7 +69,57 @@ class MovieSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
-            
+            [
+                'movie_id' => 4,
+                'title' => 'Huyền Thoại Rừng Xanh',
+                'description' => 'Phim phiêu lưu hành động kể về nhóm nhà thám hiểm trẻ tuổi khám phá khu rừng bí ẩn chưa ai đặt chân tới. Họ phải đối mặt với thử thách thiên nhiên và sinh vật kỳ bí để tìm ra kho báu cổ xưa.',
+                'duration' => '110',
+                'release_date' => '2025-11-10',
+                'poster_url' => '/assets/img/huyen-thoai-rung-xanh/huyen-thoai-rung-xanh-pt.jpg',
+                'bg_url' => '/assets/img/huyen-thoai-rung-xanh/huyen-thoai-rung-xanh-bg.jpg',
+                'status' => 'coming_soon',
+                'category' => 'Phiêu Lưu, Hành Động',
+                'actor' => 'Nguyễn Văn A, Trần Thị B, Lê Văn C',
+                'diretor' => 'Phạm Minh Dũng',
+                'country' => 'Việt Nam',
+                'trailer_url' => 'https://www.youtube.com/watch?v=abc123',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'movie_id' => 5,
+                'title' => 'Mắt Biếc',
+                'description' => 'Một nhóm sinh viên khảo cổ tìm thấy bí mật của thành phố cổ bị chôn vùi. Hành trình khám phá dẫn họ vào những câu chuyện huyền bí, đan xen giữa hiện tại và quá khứ.',
+                'duration' => '125',
+                'release_date' => '2025-12-05',
+                'poster_url' => '/assets/img/mat-biec/mat-biec-pt.jpg',
+                'bg_url' => '/assets/img/mat-biec/mat-biec-bg.jpg',
+                'status' => 'coming_soon',
+                'category' => 'Tâm Lý, Ly Kỳ',
+                'actor' => 'Lê Thị X, Phạm Văn Y, Trương Minh Z',
+                'diretor' => 'Ngô Thanh Hùng',
+                'country' => 'Việt Nam',
+                'trailer_url' => 'https://www.youtube.com/watch?v=def456',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'movie_id' => 6,
+                'title' => 'The Conjuring',
+                'description' => 'Một nhà khoa học phát minh ra cỗ máy thời gian, đưa bản thân và đồng đội vào cuộc phiêu lưu vượt thời gian, đối mặt với những thử thách nguy hiểm để cứu thế giới.',
+                'duration' => '130',
+                'release_date' => '2025-12-20',
+                'poster_url' => '/assets/img/the-conjuring/the-conjuring-pt.jpg',
+                'bg_url' => '/assets/img/the-conjuring/the-conjuring-bg.jpg',
+                'status' => 'coming_soon',
+                'category' => 'Khoa Học Viễn Tưởng, Hành Động',
+                'actor' => 'Nguyễn Minh T, Trần Hoàng L, Lê Thu Hà',
+                'diretor' => 'Hàm Trần',
+                'country' => 'Việt Nam',
+                'trailer_url' => 'https://www.youtube.com/watch?v=ghi789',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ]);
     }
 }

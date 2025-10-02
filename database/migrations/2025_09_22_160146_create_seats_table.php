@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->bigIncrements('seat_id');
-            $table->tinyInteger('seat_number');
+            $table->string('seat_number');
+
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('room_id')->on('rooms');
             $table->enum('seat_type', ['standard', 'vip']);
+            $table->string('status')->default('available');
             $table->timestamps();
         });
     }

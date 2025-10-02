@@ -19,7 +19,9 @@ return new class extends Migration
             $table->foreign('movie_id')->references('movie_id')->on('movies');
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('room_id')->on('rooms');
-            $table->time('startime');
+            $table->date('show_date');   // ngày chiếu
+            $table->datetime('start_time');  // giờ bắt đầu
+            $table->time('end_time');
             $table->timestamps();
         });
     }

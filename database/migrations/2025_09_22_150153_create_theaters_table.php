@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('theater_id');
             $table->string('name',255);
             $table->unsignedBigInteger('theater_systems_id');
-            $table->foreign('theater_systems_id')->references('theater_systems_id')->on('theatersystems');
+            $table->foreign('theater_systems_id')->references('theater_systems_id')->on('theater_systems');
             $table->timestamps();
         });
     }

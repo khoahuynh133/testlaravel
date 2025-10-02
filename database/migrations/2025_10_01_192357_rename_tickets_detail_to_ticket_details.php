@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('theatersystems', function (Blueprint $table) {
-            $table->bigIncrements('theater_systems_id');
-            $table->string('name',128);
-            $table->timestamps();
+        Schema::table('ticket_details', function (Blueprint $table) {
+            //
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('theatersystems');
+        Schema::table('ticket_details', function (Blueprint $table) {
+            //
+        });
     }
 };

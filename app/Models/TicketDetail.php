@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TicketDetail extends Model
 {
-    protected $table = 'tickets_detail';
+    protected $table = 'ticket_details';
     protected $fillable = [
         'ticket_id', 'seat_id', 'price',
     ];

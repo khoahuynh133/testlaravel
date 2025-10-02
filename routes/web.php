@@ -1,9 +1,9 @@
 <?php
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\GioiThieuController;
-use App\Http\Controllers\Frontend\LienHeController;
 
-
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,14 +12,41 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
-Route::get('/', [HomeController::class, 'home']);
-Route::get ('/gioi-thieu',[GioiThieuController::class, 'index']);
-Route::get ('/lien-he',[LienHeController::class, 'index']);
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Route cho "Phim đang chiếu"
+Route::get('/movies/now-showing', [MovieController::class, 'nowShowing'])->name('movies.now-showing');
+
+// Route cho "Phim sắp chiếu"
+Route::get('/movies/coming-soon', [MovieController::class, 'comingSoon'])->name('movies.coming-soon');
+
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
+
+// Route cho "Khuyến mãi"
+Route::get('/promotions', function () {
+    return view('promotions.index');
+})->name('promotions');
+
+// Route cho "Rạp"
+Route::get('/cinemas', function () {
+    return view('cinemas.index');
+})->name('cinemas');
+
+Route::post('/api/book-ticket', [BookingController::class, 'bookTicket']);
+
+require __DIR__ . '/auth.php';
