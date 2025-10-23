@@ -9,7 +9,7 @@ class Ticket extends Model
 {
     protected $table = 'tickets';
     protected $fillable = [
-        'user_id', 'showtime_id', 'seat_id', 'price', 'booking_time', 'status'
+        'user_id', 'showtime_id', 'total', 'booking_time', 'status'
     ];
     protected $guarded = ['ticket_id'];
     protected $primaryKey = 'ticket_id';

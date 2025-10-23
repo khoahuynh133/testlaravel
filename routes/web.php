@@ -27,11 +27,16 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
-        ->name('admin.dashboard');
+    // Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+    //     ->name('admin.dashboard');
     Route::resource('admin/movies', \App\Http\Controllers\Backend\MovieController::class)->names('movies');
     Route::resource('admin/theaters', \App\Http\Controllers\Backend\TheaterController::class)->names('theaters');
     Route::resource('admin/rooms', \App\Http\Controllers\Backend\RoomController::class)->names('rooms');
+    Route::get('admin/rooms/{room}/seats', [\App\Http\Controllers\Backend\RoomController::class, 'seats'])
+        ->name('rooms.seats');
+    // routes/web.php
+    Route::post('admin/seats/store-multiple', [\App\Http\Controllers\Backend\SeatController::class, 'storeMultiple'])->name('seats.store_multiple');
+
     Route::resource('admin/showtimes', \App\Http\Controllers\Backend\ShowTimeController::class)->names('showtimes');
     Route::resource('admin/seats', \App\Http\Controllers\Backend\SeatController::class)->names('seats');
     Route::resource('admin/users', \App\Http\Controllers\Backend\UserController::class)->names('users');
@@ -47,5 +52,6 @@ Route::middleware('auth')->group(function () {
 });
 
 use App\Http\Controllers\BookingController;
+
 Route::get('/booking', [BookingController::class, 'index'])->name('booking')->middleware('auth');
 require __DIR__ . '/auth.php';

@@ -13,16 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('seatstatus', function (Blueprint $table) {
+        Schema::create('seat_status', function (Blueprint $table) {
             $table->bigIncrements('seat_status_id');
             $table->unsignedBigInteger('seat_id');
-            $table->foreign('seat_id')->references('seat_id')->on('seats');
-            $table->unsignedBigInteger('showtime_id');
-            $table->foreign('showtime_id')->references('showtime_id')->on('showtimes');
-            $table->enum('status', ['available', 'booked']);
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('users');
+            $table->unsignedBigInteger('showtime_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->enum('status', ['available', 'pending', 'booked'])->default('available');
+
             $table->timestamps();
+
+            $table->foreign('seat_id')->references('seat_id')->on('seats')->onDelete('cascade');
+            $table->foreign('showtime_id')->references('showtime_id')->on('showtimes')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+
+            $table->index('seat_id');
+            $table->index('showtime_id');
         });
     }
 
@@ -33,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seatstatus');
+        Schema::dropIfExists('seat_status'); // phải trùng với up()
     }
 };

@@ -31,7 +31,7 @@ class RoomController extends Controller
         Room::create($request->all());
 
         return redirect()->route('rooms.index')
-                         ->with('success', 'Room created successfully.');
+            ->with('success', 'Room created successfully.');
     }
 
     public function edit($id)
@@ -52,7 +52,7 @@ class RoomController extends Controller
         $room->update($request->all());
 
         return redirect()->route('rooms.index')
-                         ->with('success', 'Room updated successfully.');
+            ->with('success', 'Room updated successfully.');
     }
 
     public function destroy($id)
@@ -61,6 +61,33 @@ class RoomController extends Controller
         $room->delete();
 
         return redirect()->route('rooms.index')
-                         ->with('success', 'Room deleted successfully.');
+            ->with('success', 'Room deleted successfully.');
+    }
+
+    public function seats(Request $request, $id)
+    {
+        // Nếu muốn lọc theo showtime, lấy từ query string
+        $showtimeId = $request->query('showtime_id');
+
+        $room = Room::with(['seats.seatStatuses' => function ($q) use ($showtimeId) {
+            if ($showtimeId) {
+                $q->where('showtime_id', $showtimeId); // chỉ lấy trạng thái theo suất chiếu
+            }
+        }])->findOrFail($id);
+
+        $seats = $room->seats->map(function ($seat) {
+            // Lấy trạng thái ghế nếu có, mặc định 'available'
+            $status = $seat->seatStatuses->first();
+            return [
+                'seat_number' => $seat->seat_number,
+                'seat_type'   => $seat->seat_type,
+                'status'      => $status->status ?? 'available',
+            ];
+        });
+
+        return response()->json([
+            'room_name' => $room->name,
+            'seats'     => $seats,
+        ]);
     }
 }

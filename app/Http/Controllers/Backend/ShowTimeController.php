@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\ShowTime;
 use App\Models\Movie;
 use App\Models\Room;
+use App\Models\Seat;
+use App\Models\SeatStatus;
 use Illuminate\Http\Request;
 
 class ShowTimeController extends Controller
@@ -33,10 +35,23 @@ class ShowTimeController extends Controller
             'price' => 'required|numeric',
         ]);
 
-        ShowTime::create($request->all());
+        // 1️⃣ Tạo showtime
+        $showtime = ShowTime::create($request->all());
+
+        // 2️⃣ Lấy tất cả ghế trong phòng của showtime
+        $seats = Seat::where('room_id', $showtime->room_id)->get();
+
+        // 3️⃣ Tạo seat_status cho mỗi ghế
+        foreach ($seats as $seat) {
+            SeatStatus::create([
+                'seat_id' => $seat->seat_id,
+                'showtime_id' => $showtime->showtime_id,
+                'status' => 'available',
+            ]);
+        }
 
         return redirect()->route('showtimes.index')
-                         ->with('success', 'Showtime created successfully.');
+            ->with('success', 'Showtime created successfully with seat statuses.');
     }
 
     public function edit($id)
@@ -61,7 +76,7 @@ class ShowTimeController extends Controller
         $showtime->update($request->all());
 
         return redirect()->route('showtimes.index')
-                         ->with('success', 'Showtime updated successfully.');
+            ->with('success', 'Showtime updated successfully.');
     }
 
     public function destroy($id)
@@ -70,6 +85,6 @@ class ShowTimeController extends Controller
         $showtime->delete();
 
         return redirect()->route('showtimes.index')
-                         ->with('success', 'Showtime deleted successfully.');
+            ->with('success', 'Showtime deleted successfully.');
     }
 }

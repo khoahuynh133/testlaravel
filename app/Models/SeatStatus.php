@@ -25,6 +25,6 @@ class SeatStatus extends Model
     }
     // Một trạng thái ghế thuộc về một user
     public function user() {
-        return $this->belongsTo(AclUser::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

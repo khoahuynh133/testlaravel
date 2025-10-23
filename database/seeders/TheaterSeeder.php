@@ -14,7 +14,7 @@ class TheaterSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('theaters')->insert([
+        \DB::table('theaters')->insertOrIgnore([
             [
                 'theater_id' => 1,
                 'name' => 'TVC Vincom Center',
